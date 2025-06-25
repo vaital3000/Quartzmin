@@ -136,7 +136,8 @@ namespace Quartzmin.Controllers
                 return new System.Net.Http.Headers.EntityTagHeaderValue(values.FirstOrDefault()).Tag;
         }
 
-        public IActionResult TextFile(string content, string contentType, DateTime lastModified, string etag)
+        [NonAction]
+        protected IActionResult TextFile(string content, string contentType, DateTime lastModified, string etag)
         {
 #if NETSTANDARD
             Response.Headers.Add("Last-Modified", lastModified.ToUniversalTime().ToString("R"));
