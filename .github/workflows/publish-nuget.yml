@@ -18,13 +18,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore Source/Quartzmin.sln
+        run: dotnet restore Quartzmin.sln
 
       - name: Build
-        run: dotnet build Source/Quartzmin.sln --configuration Release --no-restore
+        run: dotnet build Quartzmin.sln --configuration Release --no-restore
 
       - name: Pack
-        run: dotnet pack Source/Quartzmin.sln --configuration Release --no-build --output nupkgs
+        run: dotnet pack Quartzmin.sln --configuration Release --no-build --output nupkgs
 
       - name: Add GitHub source
         run: dotnet nuget add source --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
